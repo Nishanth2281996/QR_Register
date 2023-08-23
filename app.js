@@ -2,14 +2,16 @@ import express from "express";
 import ejs from "ejs";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
-import User from './model/user'
+import {User} from './model/user.js'
+import path from "path"
 const port =3000;
 
 const app = express();
 
 app.set("view engine","ejs");
-app.use(express.static("public"));
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.json());
 
 mongoose.set('strictQuery', true);
 mongoose.connect("mongodb://localhost:27017/QRregistration");
@@ -24,10 +26,15 @@ app.get("/",(req,res)=>{
     res.render("Registration.ejs");
 })
 
+app.get("/register",(req,res)=>{
+    res.render("formsubmit.ejs")
+})
+
 app.post("/register",async(req,res)=>{
     const {name,nic,phoneNumber,address,reason} = req.body;
     const newUser = new User({name,nic,phoneNumber,address,reason});
     await newUser.save();
+    res.redirect("/register")
 
 })
 
