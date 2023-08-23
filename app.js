@@ -3,7 +3,6 @@ import ejs from "ejs";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import {User} from './model/user.js'
-import path from "path"
 const port =3000;
 
 const app = express();
