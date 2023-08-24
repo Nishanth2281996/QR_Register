@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema ({
     nic : String,
     phoneNumber : Number,
     address :String,
-    reason : String
+    reason : String,
+    date:String
 })
 
 
