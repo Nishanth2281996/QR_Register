@@ -34,7 +34,7 @@ app.get("/register",(req,res)=>{
 })
 
 app.post("/register",async(req,res)=>{
-    const date = new Date().toLocaleDateString('en-us', {year:"numeric", month:"numeric", day:"numeric"});
+    const date = new Date().toLocaleDateString('en-us', {year:"numeric", month:"long", day:"numeric"});
     const {name,nic,phoneNumber,address,reason} = req.body;
     const newUser = new User({name,nic,phoneNumber,address,reason,date});
     await newUser.save();
