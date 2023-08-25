@@ -1,3 +1,11 @@
+import dotenv from "dotenv";
+
+
+if (process.env.NODE_ENV !== "production") {
+    dotenv.config();
+  }
+
+
 import express from "express";
 import ejs from "ejs";
 import mongoose from "mongoose";
@@ -17,7 +25,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.json());
 
 mongoose.set('strictQuery', true);
-mongoose.connect("mongodb://localhost:27017/QRregistration");
+mongoose.connect(process.env.MONGODB_KEY);
 
 const db = mongoose.connection;
 
