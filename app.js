@@ -33,6 +33,8 @@ const db = mongoose.connection;
     db.once("open",()=>{
             console.log("Database Successfully connected to the server")});
 
+const hostname = '0.0.0.0'
+
 app.get("/",(req,res)=>{
     res.render("Registration.ejs");
 })
@@ -69,7 +71,7 @@ app.post("/qr",(req,res)=>{
     res.redirect("/qr")
 })
 
-app.listen(port,()=>{
-    console.log(`Your Port listen to port ${port}`)
+app.listen(port , hostname ,()=>{
+    console.log(`Server Running at  http://${hostname}:${port}/`)
 })
 
